@@ -17,4 +17,19 @@ export class ResourceLoader{
         }
         // console.log(this.map);
     }
+
+    /**
+     * 定义图片完全加载成功的方法
+     */
+    onLoaded(callback){
+        let count = 0;// 计数器
+        for(let val of this.map.values()){
+            val.onload = ()=>{
+                count++;
+                if(count>=this.map.size){
+                    callback(this.map);
+                }
+            }
+        }
+    }
 }
