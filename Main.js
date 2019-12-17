@@ -38,10 +38,22 @@ export class Main{
     this.dataStore.canvas = this.canvas;
     this.dataStore.ctx = this.ctx;
     const api = new WxAPI();
-    api.playMusic();
-    api.getSysInfo();
+    // api.playMusic();
+    // api.getSysInfo();
+    // api.sendHttp();
+    // api.socket();
+    api.downLoad();
+    wx.getUserInfo({
+      success:res=>{
+        this.init();
+      },
+      fail:err=>{
+        api.getUserInfo(()=>{
+          this.init();
+        });
+      }
+    })
 
-    this.init();
   }
 
   // 初始化游戏数据
